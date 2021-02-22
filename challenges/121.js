@@ -30,8 +30,30 @@
 
 
 function checkPassword(pw) {
-    // your code here
-    return
+    let errors = [];
+
+    // regex
+    const symbols = /(.*[!@&].*)/;
+    const upper = /(.*[A-Z].*)/;
+    const lower = /(.*[a-z].*)/;
+    const num = /(.*\d.*)/;
+
+    // separating out as variables for readability
+    // or future changes
+    if (!pw.match(num)) {
+        errors.push('NUM');
+    }
+    if (!pw.match(symbols)) {
+        errors.push('SYM');
+    }
+    if (!pw.match(upper)) {
+        errors.push('UPPER');
+    }
+    if (!pw.match(lower)) {
+        errors.push('LOWER');
+    }
+
+    return errors.length ? errors : true;
 }
 
 module.exports = checkPassword;
